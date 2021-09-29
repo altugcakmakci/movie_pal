@@ -14,10 +14,15 @@ nav {
     font-family: 'Archivo Black', sans-serif;
     font-size:180%;
 }
-
+.pure-menu-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
 #sidebar {
     background-color: #368F8B;
-    height:750px;
+    height: 100vh;
     color: whitesmoke;
     font-family: 'Archivo Black', sans-serif;
     font-size:150%;
@@ -30,18 +35,53 @@ nav {
     margin-top: 2%;
     
 }
+#search-history {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 3%;
+}
 #results {
     background-color: #f3dfc1;
     color: black;
     font-family: 'Archivo Black', sans-serif;
     font-size:100%;
+    
 }
 #stacked-search {
     max-width: 70%;
 }
 #focusedInfo {
-    height: 60%;
+    height: 58.5%;
+    background-color: #E9C186;
+    margin-bottom: 1%;
 }
 #relatedMedia {
     height: 40%;
+    background-color: #E9C186;
+}
+#generalContainer {
+    background-color: #f3dfc1;
+    height: 74vh;
+    display: flex;
+    flex-flow: column nowrap;
+    
+}
+#myCollection {
+    height: 40vh;
+    background-color: #FCF6EE;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:100%;
+}
+#myWishlist {
+    height: 33vh;
+    background-color: #FCF6EE;
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:100%;
+    margin-left: 1%;
 }
