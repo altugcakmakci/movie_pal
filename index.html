@@ -4,38 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Book Repository</title>
   </head>
 
   <body>
-      <header>
-        <h1>Interactive Digital Bookshelf</h1>
-        <h2>Book vs. Movie</h2>
-        <nav>
-          <form id="search-book">
-            <input id="search-book" placeholder="Book Search">
-            <button class="book-btn">Search</button>
-        
-          <form id="search-author">
-            <input id="search-author" placeholder="Author Search">
-            <button class="author-btn">Search</button>
+  
+    <header>MOVIES PAL</header>
+    <nav>
+      <div class="pure-menu pure-menu-horizontal">        
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item">
+            <a href="index.html" class="pure-menu-link">Movie</a>
+           </li>  
+            <li class="pure-menu-item">
+                <a href="author.html" class="pure-menu-link">Director</a>
+            </li>
+            <li class="pure-menu-item">
+                <a href="mybooks.html" class="pure-menu-link">Your Collection</a>
+            </li>           
+        </ul>
+    </div>
+    </nav>
+    <!-- general container -->
+    <div class="pure-g" id="generalContainer"> 
+      <!-- side container -->
+      <div class="pure-u-1 pure-u-md-1-4 pure-u-lg-1-4" id="sidebar">
+        <!-- search -->
+        <div id="formContainer">
+          <form class="pure-form pure-form-stacked">
+            <fieldset>
+                <label for="stacked-search">Search</label>
+                <input type="email" id="stacked-search" placeholder="Search for Movie" />
+                <div id="btnContainer"><button class="pure-button pure-button-primary">Go</button></div>
+            </fieldset>
+          </form>
+          <hr>
+       </div>  
+        <!-- history -->
+        <div id = 'search-history'>
 
-            <form id="search-movie">
-              <input id="search-movie" placeholder="Movie Search">
-              <button class="movie-btn">Search</button>
-        </nav>
-      </header>
-      <section>
-        <div id ="alert-modal" class = "modal">
+        </div>
+      </div>
+
+      <!-- right container -->
+      <div class="pure-u-1 pure-u-md-3-4 pure-u-lg-3-4" id="results">
+        <!-- Focused Section -->
+        <div class="pure-g" id="focusedInfo"></div>
+        <!-- Related Media Section -->
+        <div class="pure-g" id="relatedMedia"></div>
+      </div>
+
+    </div>
+    <section>
+       <div id ="alert-modal" class = "modal">
           <div class ="alert-text">
             <span class ="close">&times;</span>
             <p>Cannot be blank!</p>
           </div>
         </div>
       </section>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
