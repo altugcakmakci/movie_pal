@@ -10,9 +10,32 @@
   </head>
 
   <body>
+      <header>
+        <h1>Interactive Digital Bookshelf</h1>
+        <h2>Book vs. Movie</h2>
+        <nav>
+          <form id="search-book">
+            <input id="search-book" placeholder="Book Search">
+            <button class="book-btn">Search</button>
+        
+          <form id="search-author">
+            <input id="search-author" placeholder="Author Search">
+            <button class="author-btn">Search</button>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <form id="search-movie">
+              <input id="search-movie" placeholder="Movie Search">
+              <button class="movie-btn">Search</button>
+        </nav>
+      </header>
+      <section>
+        <div id ="alert-modal" class = "modal">
+          <div class ="alert-text">
+            <span class ="close">&times;</span>
+            <p>Cannot be blank!</p>
+          </div>
+        </div>
+      </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
