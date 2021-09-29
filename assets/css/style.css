@@ -1,3 +1,91 @@
+
+header {
+    background-color: #160F29;
+    color: whitesmoke;
+    text-align: center;
+    padding: 3%;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:200%;
+    ;
+}
+nav {
+    background-color: #ddbea8;
+    color: black;
+    padding: 1%;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:180%;
+}
+.pure-menu-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+#sidebar {
+    background-color: #368F8B;
+    height: 100vh;
+    color: whitesmoke;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:150%;
+}
+#formContainer {
+    margin-left: 3%;
+    margin-right: 1%;
+}
+#btnContainer {
+    margin-top: 2%;
+    
+}
+#search-history {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 3%;
+}
+#results {
+    background-color: #f3dfc1;
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:100%;
+    
+}
+#stacked-search {
+    max-width: 70%;
+}
+#focusedInfo {
+    height: 58.5%;
+    background-color: #E9C186;
+    margin-bottom: 1%;
+}
+#relatedMedia {
+    height: 40%;
+    background-color: #E9C186;
+}
+#generalContainer {
+    background-color: #f3dfc1;
+    height: 74vh;
+    display: flex;
+    flex-flow: column nowrap;
+    
+}
+#myCollection {
+    height: 40vh;
+    background-color: #FCF6EE;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:100%;
+}
+#myWishlist {
+    height: 33vh;
+    background-color: #FCF6EE;
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:100%;
+    margin-left: 1%;
+}
 .author_list {
     background-color: lightblue;
     color:blue;
