@@ -46,6 +46,7 @@ function getPersonList(personName) {
 };
 
 function fillTabwithData(data, dataKnown) {
+  personInfoDiv.innerHTML = "";
   let curContainerEl = document.createElement("div");
   curContainerEl.classList = "pure-g";
   let imgDivEl = document.createElement("div");
@@ -195,5 +196,6 @@ searchButton.addEventListener("click", function (event) {
   let personInput = document.getElementById("stacked-search");
   console.log(personInput.value);
   getPersonList(personInput.value);
+  personInput.value = "";
 });
 
