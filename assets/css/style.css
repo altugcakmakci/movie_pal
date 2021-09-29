@@ -1,3 +1,4 @@
+
 header {
     background-color: #160F29;
     color: whitesmoke;
@@ -84,4 +85,14 @@ nav {
     font-family: 'Archivo Black', sans-serif;
     font-size:100%;
     margin-left: 1%;
+}
+.author_list {
+    background-color: lightblue;
+    color:blue;
+    border-left: 4px solid blue;
+    border-left-style: double;
+    margin: 2px;
+    padding: 2px;
+    width: 50%;
+    border-radius: 5px;
 }
