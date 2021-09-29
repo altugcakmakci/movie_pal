@@ -65,8 +65,6 @@ nav {
 #generalContainer {
     background-color: #f3dfc1;
     height: 74vh;
-    display: flex;
-    flex-flow: column nowrap;
     
 }
 #myCollection {
@@ -86,13 +84,39 @@ nav {
     font-size:100%;
     margin-left: 1%;
 }
-.author_list {
-    background-color: lightblue;
-    color:blue;
-    border-left: 4px solid blue;
-    border-left-style: double;
-    margin: 2px;
-    padding: 2px;
-    width: 50%;
+.person-list {
+    background-color: orange;
+    border: 2px solid black;
+    margin: 10px;
+    padding: 5px;
     border-radius: 5px;
+}
+.person_list-item {
+    list-style-type: none;
+    background-color: #ddbea8;
+    color:black;
+    border-left: 4px solid #e2a579;
+    border-left-style: double;
+    margin-bottom: 3px;
+    padding: 2px;
+    border-radius: 5px;
+    width:100%;
+    font-size:150%;
+}
+.person-image {
+    margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.person-header {
+    color:brown;
+    padding: 10px;
+    font-size:150%;
+}
+
+.person-text {
+    color:brown;
+    padding: 10px;
+    font-size:150%;
 }

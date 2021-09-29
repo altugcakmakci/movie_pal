@@ -1,6 +1,7 @@
 let personListDiv = document.getElementById("person-list");
 let personWorksListDiv = document.getElementById("person-works-list");
 let personInfoDiv = document.getElementById("person-info");
+let searchButton = document.getElementById("search-button");
 
 function getPersonList(personName) {
   personListDiv.innerHTML = "";
@@ -21,12 +22,13 @@ function getPersonList(personName) {
         console.log(data);
         if (data != null && data.d.length > 0) {
           let newPersonListEl = document.createElement("ul");
+          newPersonListEl.classList = "person-list";
 
           for (let i = 0; i < data.d.length; i++) {
             let newlistEle = document.createElement("li");
             newlistEle.textContent = data.d[i].l + " - " + data.d[i].s;
             newlistEle.setAttribute("data-attribute", data.d[i].id);
-            newlistEle.classList = "person_list";
+            newlistEle.classList = "person_list-item";
             newlistEle.addEventListener("click", function (event) {
               event.preventDefault();
               getPersonInfo(event.target.getAttribute("data-attribute"));
@@ -43,7 +45,72 @@ function getPersonList(personName) {
   });
 };
 
+function fillTabwithData(data, dataKnown) {
+  let curContainerEl = document.createElement("div");
+  curContainerEl.classList = "pure-g";
+  let imgDivEl = document.createElement("div");
+  imgDivEl.classList = "pure-u-1-4";
+
+  let curImgEl = document.createElement("img");
+  curImgEl.setAttribute("src", data.image.url);
+  curImgEl.classList = "person-image";
+  imgDivEl.appendChild(curImgEl);
+  curContainerEl.appendChild(imgDivEl);
+
+  let curdivEl = document.createElement("div");
+  curdivEl.classList = "pure-u-3-4";
+  let newPEl = document.createElement("h3");
+  newPEl.textContent = data.name;
+  newPEl.classList = "person-header";
+  curdivEl.appendChild(newPEl);
+  if (data.realName !== undefined) {
+    let newRNEl = document.createElement("p");
+    newRNEl.textContent = "Real name: " + data.realName;
+    newRNEl.classList = "person-text";
+    curdivEl.appendChild(newRNEl);
+  }
+  if (data.birthDate !== undefined) {
+    let newBDEl = document.createElement("p");
+    newBDEl.textContent = "Birth date: " + data.birthDate;
+    newBDEl.classList = "person-text";
+    curdivEl.appendChild(newBDEl);
+  }
+  if (data.birthPlace !== undefined) {
+    let newBDPEl = document.createElement("p");
+    newBDPEl.textContent = "Birth place: " + data.birthPlace;
+    newBDPEl.classList = "person-text";
+    curdivEl.appendChild(newBDPEl);
+  }
+
+  let newKFEl = document.createElement("p");
+  newKFEl.textContent = "Known for" ;
+  newKFEl.classList = "person-text";
+  curdivEl.appendChild(newKFEl);
+  console.log(dataKnown);
+
+  let kfContainerEl = document.createElement("div");
+  kfContainerEl.classList = "pure-g";
+
+  for(let i=0;i<dataKnown.length;i++){
+    let kfDivEl = document.createElement("div");
+    kfDivEl.classList = "pure-u-1-4";
+
+    let kfImgEl = document.createElement("img");
+    kfImgEl.setAttribute("src", dataKnown[i].title.image.url);
+    kfImgEl.classList = "person-image";
+    kfDivEl.appendChild(kfImgEl);
+    kfContainerEl.appendChild(kfDivEl);
+
+  }
+  curdivEl.appendChild(kfContainerEl);
+
+  curContainerEl.appendChild(curdivEl);
+
+  personInfoDiv.appendChild(curContainerEl);
+}
+
 function getPersonInfo(personId) {
+  personListDiv.innerHTML = "";
   fetch("https://imdb8.p.rapidapi.com/actors/get-bio?nconst=" + personId, {
     "method": "GET",
     "headers": {
@@ -55,22 +122,26 @@ function getPersonInfo(personId) {
       if (response.ok) {
         response.json().then(function (data) {
           console.log(data);
-          let curImgEl = document.createElement("img");
-          curImgEl.setAttribute("src", data.image.url);
 
-          let curdivEl = document.createElement("div");
-          let newPEl = document.createElement("p");
-          newPEl.textContent = data.name;
-          curdivEl.appendChild(newPEl);
-          let newBDEl = document.createElement("p");
-          newBDEl.textContent = "Birth date: "+data.birthDate;
-          curdivEl.appendChild(newBDEl);
-          let newBDPEl = document.createElement("p");
-          newBDPEl.textContent = "Birth place: "+data.birthPlace;
-          curdivEl.appendChild(newBDPEl);
+          fetch("https://imdb8.p.rapidapi.com/actors/get-known-for?nconst=" + personId, {
+            "method": "GET",
+            "headers": {
+              "x-rapidapi-host": "imdb8.p.rapidapi.com",
+              "x-rapidapi-key": "5b46d45e45mshe1c48dc69c31a27p1a2cbajsn49419ea833ba"
+            }
+          })
+            .then(response => {
+              if (response.ok) {
+                response.json().then(function (dataKnown) {
+                  fillTabwithData(data, dataKnown)
+                });
+              }
+              console.log(response);
+            })
+            .catch(err => {
+              console.error(err);
+            });
 
-          personInfoDiv.appendChild(curdivEl);
-          personInfoDiv.appendChild(curImgEl);
 
         });
       }
@@ -117,5 +188,12 @@ let jumpToWorks = function (WorksKey) {
   console.log(WorksKey);
 }
 
-getPersonList("Laura Dern");
+
+
+searchButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  let personInput = document.getElementById("stacked-search");
+  console.log(personInput.value);
+  getPersonList(personInput.value);
+});
 
