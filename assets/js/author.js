@@ -123,6 +123,9 @@ function fillTabwithData(data, dataKnown, dataWorks) {
       if (dataWorks.filmography[i].titleType!=="movie" || dataWorks.filmography[i].year===undefined || dataWorks.filmography[i].id===undefined){
         continue;
       }
+      if (dataWorks.filmography[i].category!==undefined && (dataWorks.filmography[i].category==='archive_footage' || dataWorks.filmography[i].category==='self')){
+        continue;
+      }
       console.log(i);
       console.log(dataWorks.filmography[i]);
       let newWlistEle = document.createElement("li");
