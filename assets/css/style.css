@@ -87,7 +87,7 @@ nav {
     background-color: #f3dfc1;
     height: 78vh;
     display: flex;
-    flex-flow: column nowrap;    
+    flex-flow: column nowrap; 
 }
 /* My Collection section applies only for page 3 'Your Collection' */
 #myCollection {
@@ -112,16 +112,86 @@ nav {
     margin-left: 1%;
     overflow: scroll;
 }
-.author_list {
-    background-color: lightblue;
-    color:blue;
-    border-left: 4px solid blue;
-    border-left-style: double;
-    margin: 2px;
-    padding: 2px;
-    width: 50%;
+.person-list {
+    background-color: orange;
+    border: 2px solid black;
+    margin: 10px;
+    padding: 5px;
     border-radius: 5px;
 }
+.person_list-item {
+    list-style-type: none;
+    background-color: #ddbea8;
+    color:black;
+    border-left: 4px solid #e2a579;
+    border-left-style: double;
+    margin-bottom: 3px;
+    padding: 2px;
+    border-radius: 5px;
+    width:100%;
+    font-size:150%;
+}
+.person-image {
+    margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.person-header {
+    color:brown;
+    padding: 10px;
+    font-size:150%;
+}
+
+.person-text {
+    color:brown;
+    padding: 10px;
+    font-size:150%;
+}
+
+.movie-text {
+    color:brown;
+    font-size:100%;
+    text-align: center;
+}
+
+.movie-list {
+    list-style-type: none;
+    background-color: #ddbea8;
+    color:black;
+    border-left: 4px solid #e2a579;
+    border-left-style: double;
+    margin-bottom: 3px;
+    padding: 2px;
+    border-radius: 5px;
+
+    width:100%;
+    font-size:150%;
+    display: inline-flex;
+    float:left;
+}
+
+.movie-list-header {
+    list-style-type: none;
+    background-color: brown;
+    color:#ddbea8;
+    border-left: 4px solid #e2a579;
+    border-left-style: double;
+    margin-bottom: 3px;
+    padding: 2px;
+    border-radius: 5px;
+    width:100%;
+    font-size:150%;
+}
+
+.movie-image {
+    width: 5%;
+}
+
+.movie-name {
+    padding-left: 10px;
+}
+
 #alert-modal {
     z-index: 1;
     display:none;
