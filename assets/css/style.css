@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+  }
 header {
     background-color: #160F29;
     color: whitesmoke;
@@ -13,17 +16,17 @@ nav {
     font-family: 'Archivo Black', sans-serif;
     font-size:180%;
 }
-/* Menu container styling */
-.pure-menu-horizontal {
-    display: flex;
+/* Flex box for nav bar that overrides pure css styling */
+.pure-menu-list {
+    display: flex !important;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 /* Sidebar container */
 #sidebar {
     background-color: #368F8B;
-    height: 74vh;
+    height: 100vh;
     color: whitesmoke;
     font-family: 'Archivo Black', sans-serif;
     font-size:150%;
@@ -48,25 +51,34 @@ nav {
     justify-content: flex-start;
     align-items: center;
     margin-left: 3%;
+    overflow: hidden;
+}
+/* Alignment of Search History label */
+#srchHistory-label {
+    margin-left: 2%;
+    margin-right:55%
 }
 /* General container for search results */
 #results {
     background-color: #f3dfc1;
     color: black;
     font-family: 'Archivo Black', sans-serif;
-    font-size:100%;    
+    font-size:100%;  
+    height: 100vh;
+    overflow: scroll;  
 }
 /* Container styling for focused info section of the results */
 #focusedInfo {
-    height: 55%;
+    height: 49vh;
     background-color: #E9C186;
-    margin-bottom: 2%;    
+    margin-bottom: 2vh;    
 }
 /* Container styling for the related media section of the results */
 #relatedMedia {
-    height: 40.5%;
+    height: 49vh;
     background-color: #E9C186;
 }
+
 /* General container that applies only for page 3 'Your Collection' */
 #generalContainer3 {
     background-color: #f3dfc1;
@@ -74,6 +86,7 @@ nav {
 }
 /* My Collection section applies only for page 3 'Your Collection' */
 #myCollection {
+    display: flex;
     height: 40vh;
     background-color: #FCF6EE;
     margin-bottom: 1%;
@@ -81,15 +94,18 @@ nav {
     color: black;
     font-family: 'Archivo Black', sans-serif;
     font-size:100%;
+    overflow: scroll;
 }
 /* My Wishlist section applies only for page 3 'Your Collection' */
 #myWishlist {
+    display: flex;
     height: 33vh;
     background-color: #FCF6EE;
     color: black;
     font-family: 'Archivo Black', sans-serif;
     font-size:100%;
     margin-left: 1%;
+    overflow: scroll;
 }
 .person-list {
     background-color: orange;
@@ -187,4 +203,12 @@ nav {
 }
 .close {
     font-size: 2rem;
+}
+
+p {
+    font-family: 'Archivo Black', sans-serif;  
+}
+img {
+    max-width: 20vh;
+    height:auto;
 }
