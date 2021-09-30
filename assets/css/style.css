@@ -1,0 +1,190 @@
+header {
+    background-color: #160F29;
+    color: whitesmoke;
+    text-align: center;
+    padding: 3%;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:200%;    
+}
+nav {
+    background-color: #ddbea8;
+    color: black;
+    padding: 1%;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:180%;
+}
+/* Menu container styling */
+.pure-menu-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+/* Sidebar container */
+#sidebar {
+    background-color: #368F8B;
+    height: 74vh;
+    color: whitesmoke;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:150%;
+}
+/* Container of the search form (input and button) */
+#formContainer {
+    margin-left: 3%;
+    margin-right: 1%;
+}
+/* Limit width of search input*/
+#stacked-search {
+    max-width: 70%;
+}
+/* Btn container */
+#btnContainer {
+    margin-top: 2%;    
+}
+/* search history flex container */
+#search-history {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 3%;
+}
+/* General container for search results */
+#results {
+    background-color: #f3dfc1;
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:100%;    
+}
+/* Container styling for focused info section of the results */
+#focusedInfo {
+    height: 55%;
+    background-color: #E9C186;
+    margin-bottom: 2%;    
+}
+/* Container styling for the related media section of the results */
+#relatedMedia {
+    height: 40.5%;
+    background-color: #E9C186;
+}
+/* General container that applies only for page 3 'Your Collection' */
+#generalContainer3 {
+    background-color: #f3dfc1;
+    height: 74vh;
+}
+/* My Collection section applies only for page 3 'Your Collection' */
+#myCollection {
+    height: 40vh;
+    background-color: #FCF6EE;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:100%;
+}
+/* My Wishlist section applies only for page 3 'Your Collection' */
+#myWishlist {
+    height: 33vh;
+    background-color: #FCF6EE;
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+    font-size:100%;
+    margin-left: 1%;
+}
+.person-list {
+    background-color: orange;
+    border: 2px solid black;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.person_list-item {
+    list-style-type: none;
+    background-color: #ddbea8;
+    color:black;
+    border-left: 4px solid #e2a579;
+    border-left-style: double;
+    margin-bottom: 3px;
+    padding: 2px;
+    border-radius: 5px;
+    width:100%;
+    font-size:150%;
+}
+.person-image {
+    margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.person-header {
+    color:brown;
+    padding: 10px;
+    font-size:150%;
+}
+
+.person-text {
+    color:brown;
+    padding: 10px;
+    font-size:150%;
+}
+
+.movie-text {
+    color:brown;
+    font-size:100%;
+    text-align: center;
+}
+
+.movie-list {
+    list-style-type: none;
+    background-color: #ddbea8;
+    color:black;
+    border-left: 4px solid #e2a579;
+    border-left-style: double;
+    margin-bottom: 3px;
+    padding: 2px;
+    border-radius: 5px;
+
+    width:100%;
+    font-size:150%;
+    display: inline-flex;
+    float:left;
+}
+
+.movie-list-header {
+    list-style-type: none;
+    background-color: brown;
+    color:#ddbea8;
+    border-left: 4px solid #e2a579;
+    border-left-style: double;
+    margin-bottom: 3px;
+    padding: 2px;
+    border-radius: 5px;
+    width:100%;
+    font-size:150%;
+}
+
+.movie-image {
+    width: 5%;
+}
+
+.movie-name {
+    padding-left: 10px;
+}
+
+#alert-modal {
+    z-index: 1;
+    display:none;
+    height: 5rem;
+    width: 10rem;
+    position: fixed;
+    margin: auto, 0;
+    padding:2rem;
+    top: 40%;
+    left: 50%;
+    background-color:  #368F8B;
+
+
+}
+.close {
+    font-size: 2rem;
+}

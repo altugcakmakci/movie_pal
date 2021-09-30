@@ -4,8 +4,6 @@ let searchInput = $("#stacked-search")
 let alertModal = $("#alert-modal");
 let modalSpan = $(".close");
 
-
-
 let searchBtnMovie =document.getElementById('movie-button');
 let searchMovie= document.getElementById('search-movie');
 
@@ -26,20 +24,6 @@ function searchForMovie(){
 
 
 
-modalSpan.on("click", function(event) {
-    event.preventDefault();
-    console.log(modalSpan)
-    alertModal.css("display", "none");
- })
-
-
- //place holders, delete on merge
-function getMoviesList(search){
-    console.log("API call for movies: "+search);
-}
-
-
-
 searchBtnMovie.addEventListener('click',function(){
     console.log("button clicked");
     searchForMovie();
@@ -47,8 +31,9 @@ searchBtnMovie.addEventListener('click',function(){
 
 
 
-
-
-
-
+modalSpan.on("click", function(event) {
+    event.preventDefault();
+    console.log(modalSpan)
+    alertModal.css("display", "none");
+ })
 
