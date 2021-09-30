@@ -6,6 +6,7 @@ let searchButton = document.getElementById("search-button");
 function getPersonList(personName) {
   personListDiv.innerHTML = "";
   personWorksListDiv.innerHTML = "";
+  personInfoDiv.innerHTML = "";
 
   let queryString = personName.trim().replace(" ", "%20");
 
