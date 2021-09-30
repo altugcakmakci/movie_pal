@@ -6,12 +6,12 @@ let modalSpan = $(".close");
 
 
 
-let searchBtnMovie =$('#movie-button');
-let searchMovie= $('#search-movie');
+let searchBtnMovie =document.getElementById('movie-button');
+let searchMovie= document.getElementById('search-movie');
 
 function searchForMovie(){
     // checks for valid search parameters
-    if (!searchMovie.val() || /^\s*$/.test(searchMovie.val())){
+    if (!searchMovie.value || /^\s*$/.test(searchMovie.value)){
         console.log("invalid, search cannot be empty");
         //display modal
         alertModal.css("display", "block");  
@@ -19,7 +19,7 @@ function searchForMovie(){
     }
     else{
         console.log("fetch movie");
-        getMoviesList(searchMovie.val());
+        getMoviesList(searchMovie.value);
 
     }
 }
@@ -40,7 +40,7 @@ function getMoviesList(search){
 
 
 
-searchBtnMovie.on('click',function(){
+searchBtnMovie.addEventListener('click',function(){
     console.log("button clicked");
     searchForMovie();
 });

@@ -5,12 +5,12 @@ let modalSpan = $(".close");
 
 
 
-let searchBtnPeople =$('#people-button');
-let searchPeople= $('#search-people');
+let searchBtnPeople =document.getElementById('people-button');
+let searchPeople= document.getElementById('search-people');
 
 function searchForPeople(){
     // checks for valid search parameters
-    if (!searchPeople.val() || /^\s*$/.test(searchPeople.val())){
+    if (!searchPeople.value || /^\s*$/.test(searchPeople.value)){
         console.log("invalid, search cannot be empty")
         //display modal
         alertModal.css("display", "block");
@@ -19,7 +19,7 @@ function searchForPeople(){
     }
     else{
         console.log("fetch person");
-        getPersonList(searchPeople.val());
+        getPersonList(searchPeople.value);
 
     }
 }
@@ -39,7 +39,7 @@ function getPersonList(search){
     console.log("API call for people: "+search);
 }
 
-searchBtnPeople.on('click',function(){
+searchBtnPeople.addEventListener('click',function(){
     console.log("button clicked");
     searchForPeople();
 });
