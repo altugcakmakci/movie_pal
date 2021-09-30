@@ -14,6 +14,7 @@ function searchForPeople(){
         console.log("invalid, search cannot be empty")
         //display modal
         alertModal.css("display", "block");
+        
        
     }
     else{

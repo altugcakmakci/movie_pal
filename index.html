@@ -4,25 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Book Repository</title>
   </head>
 
   <body>
+    <header>MOVIES PAL</header>
+    <nav>
+      <div class="pure-menu pure-menu-horizontal">        
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item">
+            <a href="./index.html" class="pure-menu-link">Movie</a>
+           </li>  
+            <li class="pure-menu-item">
+                <a href="./author.html" class="pure-menu-link">Director</a>
+            </li>
+            <li class="pure-menu-item">
+                <a href="./mybooks.html" class="pure-menu-link">Your Collection</a>
+            </li>           
+        </ul>
+      </div>
+    </nav>
 
-    <h3>Search for a Movie:</h3>
-    <input type="text" id="search-movie" placeholder="Search...">
-    <button type="button" class="btn btn-primary" id="movie-button">Search</button>
-    <hr>
+    <!-- general container -->
+    <div class="pure-g" id="generalContainer"> 
+      <!-- side container -->
+      <div class="pure-u-1 pure-u-md-1-4 pure-u-lg-1-4" id="sidebar">
+        <!-- search -->
+        <div id="formContainer">
+          <form class="pure-form pure-form-stacked">
+            <fieldset>
+              <input type="text" id="search-movie" placeholder="Search...">
+              <button type="button" class="pure-button pure-button-primary" id="movie-button">Search</button>
+            </fieldset>
+          </form>
+          <hr>
+       </div>  
+        <!-- history -->
+        <div id = 'search-history'>
 
-    <h3>Search for People:</h3>
-    <input type="text" id="search-people" placeholder="Search...">
-    <button type="button" class="btn btn-primary" id="people-button">Search</button>
-    <hr>
+        </div>
+      </div>
+
+      <!-- right container -->
+      <div class="pure-u-1 pure-u-md-3-4 pure-u-lg-3-4" id="results">
+        <!-- Focused Section -->
+        <div  id="focusedInfo"></div>
+        <!-- Related Media Section -->
+        <div id="relatedMedia"></div>
+      </div>
+    </div>
+      <div id ="alert-modal" class = "modal">
+        <div class ="alert-text">
+          <span class ="close">&times;</span>
+          <p>Cannot be blank!</p>
+        </div>
+      </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
+
 </html>
