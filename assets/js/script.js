@@ -120,6 +120,40 @@ function fillMovieInfoTab(data, dataPlot, dataCast) {
         curdivEl.appendChild(newPlotEl);
     }
     curContainerEl.appendChild(curdivEl);
+
+    let rbContEl = document.createElement("div");
+    rbContEl.classList="container";
+    let radioDivEl = document.createElement("div");
+    radioDivEl.classList="radio";
+    let radioInpEl = document.createElement("input");
+    radioInpEl.setAttribute("id","first");
+    radioInpEl.setAttribute("type","radio");
+    radioInpEl.setAttribute("name","numbers");
+    radioInpEl.setAttribute("value","first");
+    radioDivEl.appendChild(radioInpEl);
+
+    let radioLabEl = document.createElement("label");
+    radioInpEl.setAttribute("for","first");
+    radioInpEl.textContent="Seen";
+    radioDivEl.appendChild(radioInpEl);
+
+    radioInpEl = document.createElement("input");
+    radioInpEl.setAttribute("id","second");
+    radioInpEl.setAttribute("type","radio");
+    radioInpEl.setAttribute("name","numbers");
+    radioInpEl.setAttribute("value","second");
+    radioDivEl.appendChild(radioInpEl);
+
+    radioLabEl = document.createElement("label");
+    radioInpEl.setAttribute("for","second");
+    radioInpEl.textContent="Want to see";
+    radioDivEl.appendChild(radioInpEl);
+
+    rbContEl.appendChild(radioDivEl);
+
+    curContainerEl.appendChild(rbContEl);
+
+
     focusedInfoDiv.appendChild(curContainerEl);
 
     for (let i = 0; i < dataCast.length && i < 4; i++) {
