@@ -1,7 +1,40 @@
+
 let personListDiv = document.getElementById("person-list");
 let personWorksListDiv = document.getElementById("person-works-list");
 let personInfoDiv = document.getElementById("person-info");
 let searchButton = document.getElementById("search-button");
+let searchBtnPeople =document.getElementById('people-button');
+let searchPeople= document.getElementById('search-people');
+
+let bookInput = $('#btnContainer');
+let searchInput = $("#stacked-search")
+let alertModal = $("#alert-modal");
+let modalSpan = $(".close");
+
+function searchForPeople(){
+    // checks for valid search parameters
+    if (!searchPeople.value || /^\s*$/.test(searchPeople.value)){
+        console.log("invalid, search cannot be empty")
+        //display modal
+        alertModal.css("display", "block");
+    }
+    else{
+        console.log("fetch person");
+        getPersonList(searchPeople.value);
+
+    }
+}
+
+searchBtnPeople.addEventListener('click',function(){
+    console.log("button clicked");
+    searchForPeople();
+});
+
+modalSpan.on("click", function(event) {
+    event.preventDefault();
+    console.log(modalSpan)
+    alertModal.css("display", "none");
+ })
 
 function getPersonList(personName) {
   personListDiv.innerHTML = "";
@@ -254,12 +287,4 @@ let jumpToWorks = function (WorksKey) {
 }
 
 
-
-searchButton.addEventListener("click", function (event) {
-  event.preventDefault();
-  let personInput = document.getElementById("stacked-search");
-  console.log(personInput.value);
-  getPersonList(personInput.value);
-  personInput.value = "";
-});
 
