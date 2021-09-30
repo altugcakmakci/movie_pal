@@ -58,13 +58,11 @@ nav {
 }
 /* Container styling for focused info section of the results */
 #focusedInfo {
-    height: 55%;
     background-color: #E9C186;
     margin-bottom: 2%;    
 }
 /* Container styling for the related media section of the results */
 #relatedMedia {
-    height: 40.5%;
     background-color: #E9C186;
 }
 /* General container that applies only for page 3 'Your Collection' */
