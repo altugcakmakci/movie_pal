@@ -45,7 +45,7 @@ function getPersonList(personName) {
   });
 };
 
-function fillTabwithData(data, dataKnown) {
+function fillTabwithData(data, dataKnown, dataWorks) {
   personInfoDiv.innerHTML = "";
   let curContainerEl = document.createElement("div");
   curContainerEl.classList = "pure-g";
@@ -84,22 +84,26 @@ function fillTabwithData(data, dataKnown) {
   }
 
   let newKFEl = document.createElement("p");
-  newKFEl.textContent = "Known for" ;
-  newKFEl.classList = "person-text";
+  newKFEl.textContent = "Known for";
+  newKFEl.classList = "person-text movie-list-header";
   curdivEl.appendChild(newKFEl);
   console.log(dataKnown);
 
   let kfContainerEl = document.createElement("div");
   kfContainerEl.classList = "pure-g";
 
-  for(let i=0;i<dataKnown.length;i++){
+  for (let i = 0; i < dataKnown.length; i++) {
     let kfDivEl = document.createElement("div");
     kfDivEl.classList = "pure-u-1-4";
 
     let kfImgEl = document.createElement("img");
     kfImgEl.setAttribute("src", dataKnown[i].title.image.url);
     kfImgEl.classList = "person-image";
+    let kfPEl = document.createElement("p");
+    kfPEl.textContent = dataKnown[i].title.title;
+    kfPEl.classList = "movie-text";
     kfDivEl.appendChild(kfImgEl);
+    kfDivEl.appendChild(kfPEl);
     kfContainerEl.appendChild(kfDivEl);
 
   }
@@ -108,6 +112,44 @@ function fillTabwithData(data, dataKnown) {
   curContainerEl.appendChild(curdivEl);
 
   personInfoDiv.appendChild(curContainerEl);
+
+  if (dataWorks!=null && dataWorks.filmography!==undefined && dataWorks.filmography.length>0){
+    let newWUListEl = document.createElement("ul");
+    let newWHeaderEle = document.createElement("li");
+    newWHeaderEle.textContent = "Works";
+    newWHeaderEle.classList = "movie-list-header";
+    newWUListEl.appendChild(newWHeaderEle);
+    for (let i = 0; i < dataWorks.filmography.length; i++) {
+      if (dataWorks.filmography[i].titleType!=="movie" || dataWorks.filmography[i].year===undefined || dataWorks.filmography[i].id===undefined){
+        continue;
+      }
+      console.log(i);
+      console.log(dataWorks.filmography[i]);
+      let newWlistEle = document.createElement("li");
+      let kWImgEl = document.createElement("img");
+      if (dataWorks.filmography[i].image!==undefined){
+        kWImgEl.setAttribute("src", dataWorks.filmography[i].image.url);
+      }
+      
+      kWImgEl.classList = "movie-image";
+      newWlistEle.appendChild(kWImgEl);
+      let pListEl = document.createElement("p");
+      pListEl.textContent = dataWorks.filmography[i].title + " ("+dataWorks.filmography[i].year+") "+dataWorks.filmography[i].category;
+      pListEl.classList='movie-name';
+      newWlistEle.setAttribute("data-attribute", dataWorks.filmography[i].id);
+      newWlistEle.classList = "movie-list";
+      newWlistEle.appendChild(pListEl);
+      newWlistEle.addEventListener("click", function (event) {
+        event.preventDefault();
+        //jumpToWorks(event.target.getAttribute("data-attribute"));
+      });
+      
+      newWUListEl.appendChild(newWlistEle);
+    }
+    personWorksListDiv.appendChild(newWUListEl);
+  }
+  
+
 }
 
 function getPersonInfo(personId) {
@@ -134,7 +176,25 @@ function getPersonInfo(personId) {
             .then(response => {
               if (response.ok) {
                 response.json().then(function (dataKnown) {
-                  fillTabwithData(data, dataKnown)
+                  fetch("https://imdb8.p.rapidapi.com/actors/get-all-filmography?nconst=" + personId, {
+                    "method": "GET",
+                    "headers": {
+                      "x-rapidapi-host": "imdb8.p.rapidapi.com",
+                      "x-rapidapi-key": "5b46d45e45mshe1c48dc69c31a27p1a2cbajsn49419ea833ba"
+                    }
+                  })
+                    .then(response => {
+                      if (response.ok) {
+                        response.json().then(function (dataWorks) {
+                          console.log("Altug");
+                          console.log(dataWorks);
+                          fillTabwithData(data, dataKnown,dataWorks)
+                        });
+                      }
+                    })
+                    .catch(err => {
+                      console.error(err);
+                    });
                 });
               }
               console.log(response);

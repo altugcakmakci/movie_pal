@@ -120,3 +120,45 @@ nav {
     padding: 10px;
     font-size:150%;
 }
+
+.movie-text {
+    color:brown;
+    font-size:100%;
+    text-align: center;
+}
+
+.movie-list {
+    list-style-type: none;
+    background-color: #ddbea8;
+    color:black;
+    border-left: 4px solid #e2a579;
+    border-left-style: double;
+    margin-bottom: 3px;
+    padding: 2px;
+    border-radius: 5px;
+    width:100%;
+    font-size:150%;
+    display: inline-flex;
+    float:left;
+}
+
+.movie-list-header {
+    list-style-type: none;
+    background-color: brown;
+    color:#ddbea8;
+    border-left: 4px solid #e2a579;
+    border-left-style: double;
+    margin-bottom: 3px;
+    padding: 2px;
+    border-radius: 5px;
+    width:100%;
+    font-size:150%;
+}
+
+.movie-image {
+    width: 5%;
+}
+
+.movie-name {
+    padding-left: 10px;
+}
