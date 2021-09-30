@@ -104,5 +104,19 @@ nav {
     border-radius: 5px;
 }
 #alert-modal {
+    z-index: 1;
     display:none;
+    height: 5rem;
+    width: 10rem;
+    position: fixed;
+    margin: auto, 0;
+    padding:2rem;
+    top: 40%;
+    left: 50%;
+    background-color:  #368F8B;
+
+
+}
+.close {
+    font-size: 2rem;
 }
