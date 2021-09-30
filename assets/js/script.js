@@ -16,7 +16,6 @@ function searchForMovie() {
         console.log("invalid, search cannot be empty");
         //display modal
         alertModal.css("display", "block");
-
     }
     else {
         console.log("fetch movie");
@@ -82,7 +81,7 @@ function getMoviesList(searchTitle) {
     });
 }
 
-function fillMovieInfoTab(data,dataPlot) {
+function fillMovieInfoTab(data, dataPlot, dataCast) {
     movieListDiv.innerHTML = "";
     focusedInfoDiv.innerHTML = "";
     let curContainerEl = document.createElement("div");
@@ -114,7 +113,7 @@ function fillMovieInfoTab(data,dataPlot) {
         newBDEl.classList = "person-text";
         curdivEl.appendChild(newBDEl);
     }
-    if (dataPlot!==null && dataPlot.plots.length>0){
+    if (dataPlot !== null && dataPlot.plots.length > 0) {
         let newPlotEl = document.createElement("p");
         newPlotEl.textContent = dataPlot.plots[0].text;
         newPlotEl.classList = "person-text";
@@ -123,76 +122,45 @@ function fillMovieInfoTab(data,dataPlot) {
     curContainerEl.appendChild(curdivEl);
     focusedInfoDiv.appendChild(curContainerEl);
 
-    /*    let newKFEl = document.createElement("p");
-        newKFEl.textContent = "Known for";
-        newKFEl.classList = "person-text movie-list-header";
-        curdivEl.appendChild(newKFEl);
-        console.log(dataKnown);
-      
-        let kfContainerEl = document.createElement("div");
-        kfContainerEl.classList = "pure-g";
-      
-        for (let i = 0; i < dataKnown.length; i++) {
-          let kfDivEl = document.createElement("div");
-          kfDivEl.classList = "pure-u-1-4";
-      
-          let kfImgEl = document.createElement("img");
-          kfImgEl.setAttribute("src", dataKnown[i].title.image.url);
-          kfImgEl.classList = "person-image";
-          let kfPEl = document.createElement("p");
-          kfPEl.textContent = dataKnown[i].title.title;
-          kfPEl.classList = "movie-text";
-          kfDivEl.appendChild(kfImgEl);
-          kfDivEl.appendChild(kfPEl);
-          kfContainerEl.appendChild(kfDivEl);
-      
-        }
-        curdivEl.appendChild(kfContainerEl);
-      
-        curContainerEl.appendChild(curdivEl);
-      
-        personInfoDiv.appendChild(curContainerEl);
-      
-        if (dataWorks!=null && dataWorks.filmography!==undefined && dataWorks.filmography.length>0){
-          let newWUListEl = document.createElement("ul");
-          let newWHeaderEle = document.createElement("li");
-          newWHeaderEle.textContent = "Works";
-          newWHeaderEle.classList = "movie-list-header";
-          newWUListEl.appendChild(newWHeaderEle);
-          for (let i = 0; i < dataWorks.filmography.length; i++) {
-            if (dataWorks.filmography[i].titleType!=="movie" || dataWorks.filmography[i].year===undefined || dataWorks.filmography[i].id===undefined){
-              continue;
+    for (let i = 0; i < dataCast.length && i < 4; i++) {
+        let castName = dataCast[i].split('/')[2];
+        console.log(castName);
+        fetch("https://imdb8.p.rapidapi.com/actors/get-bio?nconst=" + castName, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "imdb8.p.rapidapi.com",
+                "x-rapidapi-key": "5b46d45e45mshe1c48dc69c31a27p1a2cbajsn49419ea833ba"
             }
-            if (dataWorks.filmography[i].category!==undefined && (dataWorks.filmography[i].category==='archive_footage' || dataWorks.filmography[i].category==='self')){
-              continue;
-            }
-            console.log(i);
-            console.log(dataWorks.filmography[i]);
-            let newWlistEle = document.createElement("li");
-            let kWImgEl = document.createElement("img");
-            if (dataWorks.filmography[i].image!==undefined){
-              kWImgEl.setAttribute("src", dataWorks.filmography[i].image.url);
-            }
-            
-            kWImgEl.classList = "movie-image";
-            newWlistEle.appendChild(kWImgEl);
-            let pListEl = document.createElement("p");
-            pListEl.textContent = dataWorks.filmography[i].title + " ("+dataWorks.filmography[i].year+") "+dataWorks.filmography[i].category;
-            pListEl.classList='movie-name';
-            newWlistEle.setAttribute("data-attribute", dataWorks.filmography[i].id);
-            newWlistEle.classList = "movie-list";
-            newWlistEle.appendChild(pListEl);
-            newWlistEle.addEventListener("click", function (event) {
-              event.preventDefault();
-              //jumpToWorks(event.target.getAttribute("data-attribute"));
+        })
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(function (dataBio) {
+                        console.log(dataBio);
+                        addCastDiv(dataBio);
+                    });
+                }
+            })
+            .catch(err => {
+                console.error(err);
             });
-            
-            newWUListEl.appendChild(newWlistEle);
-          }
-          personWorksListDiv.appendChild(newWUListEl);
-        } */
+    }
+}
 
+function addCastDiv(dataBio) {
 
+    let kfDivEl = document.createElement("div");
+    kfDivEl.classList = "pure-u-1-4";
+
+    let kfImgEl = document.createElement("img");
+    kfImgEl.setAttribute("src", dataBio.image.url);
+    kfImgEl.classList = "person-image";
+    let kfPEl = document.createElement("p");
+    kfPEl.textContent = dataBio.name;
+    kfPEl.classList = "movie-text";
+    kfDivEl.appendChild(kfImgEl);
+    kfDivEl.appendChild(kfPEl);
+
+    castInfoDiv.appendChild(kfDivEl);
 }
 
 function getMovieInfo(movieId) {
@@ -216,20 +184,42 @@ function getMovieInfo(movieId) {
                 response.json().then(function (data) {
                     console.log(data);
 
-                    fetch("https://imdb8.p.rapidapi.com/title/get-plots?tconst="+ titleId, {
+                    fetch("https://imdb8.p.rapidapi.com/title/get-plots?tconst=" + titleId, {
                         "method": "GET",
                         "headers": {
                             "x-rapidapi-host": "imdb8.p.rapidapi.com",
                             "x-rapidapi-key": "5b46d45e45mshe1c48dc69c31a27p1a2cbajsn49419ea833ba"
-                        
-                       }
+
+                        }
                     })
                         .then(response => {
                             if (response.ok) {
                                 response.json().then(function (dataPlot) {
                                     console.log(dataPlot);
-                                    fillMovieInfoTab(data,dataPlot);
-                                    
+
+                                    fetch("https://imdb8.p.rapidapi.com/title/get-top-cast?tconst=" + titleId, {
+                                        "method": "GET",
+                                        "headers": {
+                                            "x-rapidapi-host": "imdb8.p.rapidapi.com",
+                                            "x-rapidapi-key": "5b46d45e45mshe1c48dc69c31a27p1a2cbajsn49419ea833ba"
+
+
+                                        }
+                                    })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                response.json().then(function (dataCast) {
+                                                    console.log(dataCast);
+                                                    fillMovieInfoTab(data, dataPlot, dataCast);
+
+                                                });
+                                            }
+                                        })
+                                        .catch(err => {
+                                            console.error(err);
+                                        });
+
+
                                 });
                             }
                         })
@@ -237,7 +227,7 @@ function getMovieInfo(movieId) {
                             console.error(err);
                         });
 
-                    
+
                 });
             }
         })
