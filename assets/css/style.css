@@ -117,7 +117,7 @@ h3 {
 }
 /* Container styling for focused info section of the results */
 #focusedInfo {
-    height: 45vh;    
+        
     margin: 1vh;    
     border-radius: 8px;         
 }
