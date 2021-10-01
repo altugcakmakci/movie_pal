@@ -2,6 +2,7 @@
     box-sizing: border-box;
     font-family: 'Scheherazade New', serif !important;
   }
+
 header {
     background-image: linear-gradient(160deg, rgb(1, 42, 74), rgb(1, 42, 74, 0.15));
     color: whitesmoke;
@@ -126,6 +127,7 @@ h3 {
     
     border-radius: 8px;  
     margin: 0vh 1vh 0vh 1vh;
+
 }
 
 /* General container that applies only for page 3 'Your Collection' */
@@ -255,6 +257,12 @@ h3 {
 .close {
     font-size: 2rem;
 }
+
+
+.bookCard{
+    display:inline-block;
+
+    width:250px;
 
 p {
     font-family: 'Archivo Black', sans-serif;  
