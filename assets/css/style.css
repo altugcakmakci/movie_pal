@@ -211,7 +211,8 @@ nav {
 
 .bookCard{
     display:inline-block;
-    width:200px;
+
+    width:250px;
 
 p {
     font-family: 'Archivo Black', sans-serif;  

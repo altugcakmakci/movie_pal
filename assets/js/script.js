@@ -67,6 +67,8 @@ function relatedBooks(){
     });
 }
 function generateRelatedBooks(data){
+    relatedMediaDiv.innerHTML=""
+    relatedMediaButtons();
     let bookDiv=document.createElement('div');
     for (i=0; i<4; i++){
         console.log(data.items[i].volumeInfo.title);
@@ -128,6 +130,8 @@ function relatedRedditPosts(){
 }
 
 function generateRedditPosts(data){
+    relatedMediaDiv.innerHTML=""
+    relatedMediaButtons();
     //only display text post discussions
     for (i=0; i<data.data.children.length;i++){
         if (data.data.children[i].data.selftext==""){
@@ -157,6 +161,28 @@ function generateRedditPosts(data){
     }
     relatedMediaDiv.setAttribute('style','overflow: scroll')
 }
-//Uncomment to view content
+
+
+function relatedMediaButtons(){
+    relatedMediaDiv.innerHTML="";
+    let buttonDiv= document.createElement('div');
+    let booksButton=document.createElement('button');
+    booksButton.textContent="Related Books";
+    booksButton.addEventListener('click',function(){
+        relatedBooks();
+    });
+    buttonDiv.appendChild(booksButton);
+    let redditButton = document.createElement('button');
+    redditButton.textContent="Reddit Discussion";
+    redditButton.addEventListener('click', function(){
+        relatedRedditPosts();
+    });
+    buttonDiv.appendChild(redditButton);
+
+    relatedMediaDiv.appendChild(buttonDiv);
+}
+
+relatedMediaButtons();
+
 //relatedBooks();
 //relatedRedditPosts();
