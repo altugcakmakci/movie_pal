@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
   }
+
 header {
     background-color: #160F29;
     color: whitesmoke;
@@ -75,7 +76,9 @@ nav {
 }
 /* Container styling for the related media section of the results */
 #relatedMedia {
+
     height: 49vh;
+
     background-color: #E9C186;
 }
 
@@ -205,10 +208,16 @@ nav {
     font-size: 2rem;
 }
 
+
+.bookCard{
+    display:inline-block;
+    width:200px;
+
 p {
     font-family: 'Archivo Black', sans-serif;  
 }
 img {
     max-width: 20vh;
     height:auto;
+
 }
