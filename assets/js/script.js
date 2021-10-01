@@ -1,9 +1,12 @@
-
+//let apiKey = "k_03x8mwjd";
+let apiKey = "k_aaaaaaaa";
 let bookInput = $('#btnContainer');
 let searchInput = $("#stacked-search")
 let alertModal = $("#alert-modal");
 let modalSpan = $(".close");
 let movieListDiv = document.getElementById("movie-list");
+let storedMoviesSeen = [];
+let storedMoviesWant = [];
 
 let searchBtnMovie = document.getElementById('movie-button');
 let searchMovie = document.getElementById('search-movie');
@@ -46,13 +49,7 @@ function getMoviesList(searchTitle) {
     let queryString = searchTitle.trim().replace(" ", "%20");
 
     console.log();
-    fetch("https://imdb8.p.rapidapi.com/title/find?q=" + queryString, {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "imdb8.p.rapidapi.com",
-            "x-rapidapi-key": "5b46d45e45mshe1c48dc69c31a27p1a2cbajsn49419ea833ba"
-        }
-    }).then(function (response) {
+    fetch("https://imdb-api.com/en/API/SearchTitle/" + apiKey + "/" + queryString).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data);
@@ -62,7 +59,7 @@ function getMoviesList(searchTitle) {
 
                     for (let i = 0; i < data.results.length; i++) {
                         let newlistEle = document.createElement("li");
-                        newlistEle.textContent = data.results[i].title + " (" + data.results[i].year + ")";
+                        newlistEle.textContent = data.results[i].title + " " + data.results[i].description;
                         newlistEle.setAttribute("data-attribute", data.results[i].id);
                         newlistEle.classList = "person_list-item";
                         newlistEle.addEventListener("click", function (event) {
@@ -81,7 +78,7 @@ function getMoviesList(searchTitle) {
     });
 }
 
-function fillMovieInfoTab(data, dataPlot, dataCast) {
+function fillMovieInfoTab(data) {
     movieListDiv.innerHTML = "";
     focusedInfoDiv.innerHTML = "";
     let curContainerEl = document.createElement("div");
@@ -90,7 +87,7 @@ function fillMovieInfoTab(data, dataPlot, dataCast) {
     imgDivEl.classList = "pure-u-1-4";
 
     let curImgEl = document.createElement("img");
-    curImgEl.setAttribute("src", data.image.url);
+    curImgEl.setAttribute("src", data.image);
     curImgEl.classList = "person-image";
     imgDivEl.appendChild(curImgEl);
     curContainerEl.appendChild(imgDivEl);
@@ -98,99 +95,122 @@ function fillMovieInfoTab(data, dataPlot, dataCast) {
     let curdivEl = document.createElement("div");
     curdivEl.classList = "pure-u-3-4";
     let newPEl = document.createElement("h3");
-    newPEl.textContent = data.title;
+    newPEl.textContent = data.fullTitle;
     newPEl.classList = "person-header";
     curdivEl.appendChild(newPEl);
-    if (data.year !== undefined) {
+    if (data.directors !== undefined) {
         let newRNEl = document.createElement("p");
-        newRNEl.textContent = "Year: " + data.year;
+        newRNEl.textContent = "Directed by " + data.directors;
         newRNEl.classList = "person-text";
         curdivEl.appendChild(newRNEl);
     }
-    if (data.year !== undefined) {
+    if (data.runtimeStr !== undefined) {
         let newBDEl = document.createElement("p");
-        newBDEl.textContent = "Running time: " + data.year + " minutes";
+        newBDEl.textContent = "Running time: " + data.runtimeStr;
         newBDEl.classList = "person-text";
         curdivEl.appendChild(newBDEl);
     }
-    if (dataPlot !== null && dataPlot.plots.length > 0) {
+
+    let rbContEl = document.createElement("div");
+    rbContEl.classList = "container";
+    let radioDivEl = document.createElement("div");
+    radioDivEl.classList = "radio";
+    let radioInpEl = document.createElement("input");
+    radioInpEl.setAttribute("id", "first");
+    radioInpEl.setAttribute("type", "radio");
+    radioInpEl.setAttribute("name", "numbers");
+    radioInpEl.setAttribute("value", "first");
+    radioInpEl.classList = "radio-seen";
+    radioInpEl.setAttribute("data-attribute", data.fullTitle);
+    radioInpEl.addEventListener("click", function (event) {
+        addMovieSeen(event.target.getAttribute("data-attribute"));
+    })
+    radioDivEl.appendChild(radioInpEl);
+
+    let radioLabEl = document.createElement("label");
+    radioLabEl.setAttribute("for", "first");
+    radioLabEl.textContent = "Seen";
+    radioLabEl.classList = "radio-seen";
+    radioDivEl.appendChild(radioLabEl);
+
+    radioInpEl = document.createElement("input");
+    radioInpEl.setAttribute("id", "second");
+    radioInpEl.setAttribute("type", "radio");
+    radioInpEl.setAttribute("name", "numbers");
+    radioInpEl.setAttribute("value", "second");
+    radioInpEl.classList = "radio-seen";
+    radioInpEl.setAttribute("data-attribute", data.fullTitle);
+    radioInpEl.addEventListener("click", function (event) {
+        addMovieWant(event.target.getAttribute("data-attribute"));
+    })
+    radioDivEl.appendChild(radioInpEl);
+
+    radioLabEl = document.createElement("label");
+    radioLabEl.setAttribute("for", "second");
+    radioLabEl.textContent = "Want to see";
+    radioLabEl.classList = "radio-seen";
+    radioDivEl.appendChild(radioLabEl);
+
+    radioInpEl = document.createElement("input");
+    radioInpEl.setAttribute("id", "third");
+    radioInpEl.setAttribute("type", "radio");
+    radioInpEl.setAttribute("name", "numbers");
+    radioInpEl.setAttribute("value", "third");
+    radioInpEl.classList = "radio-seen";
+    radioInpEl.setAttribute("data-attribute", data.fullTitle);
+    radioInpEl.addEventListener("click", function (event) {
+        removeMovie(event.target.getAttribute("data-attribute"));
+    })
+    radioDivEl.appendChild(radioInpEl);
+
+    radioLabEl = document.createElement("label");
+    radioLabEl.setAttribute("for", "third");
+    radioLabEl.textContent = "Not interested";
+    radioLabEl.classList = "radio-seen";
+    radioDivEl.appendChild(radioLabEl);
+
+    rbContEl.appendChild(radioDivEl);
+
+    curdivEl.appendChild(rbContEl);
+
+    if (data.plot !== undefined && data.plot.length > 0) {
         let newPlotEl = document.createElement("p");
-        newPlotEl.textContent = dataPlot.plots[0].text;
+        newPlotEl.textContent = data.plot;
         newPlotEl.classList = "person-text";
         curdivEl.appendChild(newPlotEl);
     }
     curContainerEl.appendChild(curdivEl);
 
-    let rbContEl = document.createElement("div");
-    rbContEl.classList="container";
-    let radioDivEl = document.createElement("div");
-    radioDivEl.classList="radio";
-    let radioInpEl = document.createElement("input");
-    radioInpEl.setAttribute("id","first");
-    radioInpEl.setAttribute("type","radio");
-    radioInpEl.setAttribute("name","numbers");
-    radioInpEl.setAttribute("value","first");
-    radioDivEl.appendChild(radioInpEl);
-
-    let radioLabEl = document.createElement("label");
-    radioInpEl.setAttribute("for","first");
-    radioInpEl.textContent="Seen";
-    radioDivEl.appendChild(radioInpEl);
-
-    radioInpEl = document.createElement("input");
-    radioInpEl.setAttribute("id","second");
-    radioInpEl.setAttribute("type","radio");
-    radioInpEl.setAttribute("name","numbers");
-    radioInpEl.setAttribute("value","second");
-    radioDivEl.appendChild(radioInpEl);
-
-    radioLabEl = document.createElement("label");
-    radioInpEl.setAttribute("for","second");
-    radioInpEl.textContent="Want to see";
-    radioDivEl.appendChild(radioInpEl);
-
-    rbContEl.appendChild(radioDivEl);
-
-    curContainerEl.appendChild(rbContEl);
-
-
     focusedInfoDiv.appendChild(curContainerEl);
 
-    for (let i = 0; i < dataCast.length && i < 4; i++) {
-        let castName = dataCast[i].split('/')[2];
-        console.log(castName);
-        fetch("https://imdb8.p.rapidapi.com/actors/get-bio?nconst=" + castName, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "imdb8.p.rapidapi.com",
-                "x-rapidapi-key": "5b46d45e45mshe1c48dc69c31a27p1a2cbajsn49419ea833ba"
-            }
-        })
-            .then(response => {
-                if (response.ok) {
-                    response.json().then(function (dataBio) {
-                        console.log(dataBio);
-                        addCastDiv(dataBio);
-                    });
-                }
-            })
-            .catch(err => {
-                console.error(err);
-            });
+    for (let i = 0; i < data.actorList.length; i++) {
+        addCastDiv(data.actorList[i]);
     }
 }
 
-function addCastDiv(dataBio) {
+function addCastDiv(dataCast) {
 
+    console.log(dataCast);
     let kfDivEl = document.createElement("div");
     kfDivEl.classList = "pure-u-1-4";
 
     let kfImgEl = document.createElement("img");
-    kfImgEl.setAttribute("src", dataBio.image.url);
+    kfImgEl.setAttribute("src", dataCast.image);
     kfImgEl.classList = "person-image";
+    kfImgEl.setAttribute("data-attribute", dataCast.id);
+    kfImgEl.addEventListener("click", function (event) {
+        event.preventDefault();
+        jumpToPerson(event.target.getAttribute("data-attribute"));
+    });
     let kfPEl = document.createElement("p");
-    kfPEl.textContent = dataBio.name;
+    kfPEl.textContent = dataCast.name + " as " + dataCast.asCharacter;
     kfPEl.classList = "movie-text";
+    kfPEl.setAttribute("data-attribute", dataCast.id);
+    kfPEl.classList = "person_list-item";
+    kfPEl.addEventListener("click", function (event) {
+        event.preventDefault();
+        jumpToPerson(event.target.getAttribute("data-attribute"));
+    });
     kfDivEl.appendChild(kfImgEl);
     kfDivEl.appendChild(kfPEl);
 
@@ -200,73 +220,119 @@ function addCastDiv(dataBio) {
 function getMovieInfo(movieId) {
 
     focusedInfoDiv.innerHTML = "";
-    console.log(movieId);
-    console.log(movieId.split('/'));
-    let titleId = movieId.split('/')[2];
-    if (titleId === null) {
-        return;
-    }
-    fetch("https://imdb8.p.rapidapi.com/title/get-details?tconst=" + titleId, {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "imdb8.p.rapidapi.com",
-            "x-rapidapi-key": "5b46d45e45mshe1c48dc69c31a27p1a2cbajsn49419ea833ba"
+
+    fetch("https://imdb-api.com/en/API/Title/" + apiKey + "/" + movieId).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data);
+                fillMovieInfoTab(data);
+
+            });
         }
     })
-        .then(response => {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    console.log(data);
-
-                    fetch("https://imdb8.p.rapidapi.com/title/get-plots?tconst=" + titleId, {
-                        "method": "GET",
-                        "headers": {
-                            "x-rapidapi-host": "imdb8.p.rapidapi.com",
-                            "x-rapidapi-key": "5b46d45e45mshe1c48dc69c31a27p1a2cbajsn49419ea833ba"
-
-                        }
-                    })
-                        .then(response => {
-                            if (response.ok) {
-                                response.json().then(function (dataPlot) {
-                                    console.log(dataPlot);
-
-                                    fetch("https://imdb8.p.rapidapi.com/title/get-top-cast?tconst=" + titleId, {
-                                        "method": "GET",
-                                        "headers": {
-                                            "x-rapidapi-host": "imdb8.p.rapidapi.com",
-                                            "x-rapidapi-key": "5b46d45e45mshe1c48dc69c31a27p1a2cbajsn49419ea833ba"
-
-
-                                        }
-                                    })
-                                        .then(response => {
-                                            if (response.ok) {
-                                                response.json().then(function (dataCast) {
-                                                    console.log(dataCast);
-                                                    fillMovieInfoTab(data, dataPlot, dataCast);
-
-                                                });
-                                            }
-                                        })
-                                        .catch(err => {
-                                            console.error(err);
-                                        });
-
-
-                                });
-                            }
-                        })
-                        .catch(err => {
-                            console.error(err);
-                        });
-
-
-                });
-            }
-        })
         .catch(err => {
             console.error(err);
         });
 }
+
+let jumpToPerson = function (personKey) {
+    console.log(personKey);
+    document.location.replace("./author.html?id=" + personKey);
+}
+
+function checkInputParameter() {
+    console.log(location.search);
+    if (location.search.length === 0) {
+        console.log("return");
+        return;
+    }
+    let parameters = location.search.substring(1).split("&");
+    if (parameters === undefined || parameters === null || parameters.length === 0) {
+        console.log("return");
+        return;
+    }
+    console.log(parameters);
+    console.log(parameters[0].substring(1).split("=")[1]);
+    if (parameters[0].substring(1).split("=")[1] !== null) {
+        getMovieInfo(parameters[0].substring(1).split("=")[1]);
+    }
+}
+
+function addMovieSeen(movieName) {
+    if (storedMoviesSeen == null) {
+        storedMoviesSeen = [movieName];
+    } else {
+        if (storedMoviesSeen.includes(movieName)) {
+            return;
+        } else {
+            storedMoviesSeen.push(movieName);
+        }
+    }
+    localStorage.setItem("Movies-Seen", JSON.stringify(storedMoviesSeen));
+    if (storedMoviesWant == null || storedMoviesWant.length === 0) {
+        return;
+    }
+    if (storedMoviesWant.includes(movieName)) {
+        for (let i = 0; i < storedMoviesWant.length; i++) {
+            if (storedMoviesWant[i] === movieName) {
+                storedMoviesWant.splice(i, 1);
+            }
+        }
+    }
+    localStorage.setItem("Movies-Want", JSON.stringify(storedMoviesWant));
+}
+
+
+
+function addMovieWant(movieName) {
+    if (storedMoviesWant == null) {
+        storedMoviesWant = [movieName];
+    } else {
+        if (storedMoviesWant.includes(movieName)) {
+            return;
+        } else {
+            storedMoviesWant.push(movieName);
+        }
+    }
+    if (storedMoviesSeen == null || storedMoviesSeen.length === 0) {
+        return;
+    }
+    localStorage.setItem("Movies-Want", JSON.stringify(storedMoviesWant));
+    if (storedMoviesSeen.includes(movieName)) {
+        for (let i = 0; i < storedMoviesSeen.length; i++) {
+            if (storedMoviesSeen[i] === movieName) {
+                storedMoviesSeen.splice(i, 1);
+            }
+        }
+    }
+    localStorage.setItem("Movies-Seen", JSON.stringify(storedMoviesSeen));
+}
+
+function removeMovie(movieName) {
+    if (storedMoviesSeen !== null && storedMoviesSeen.length > 0) {
+        localStorage.setItem("Movies-Want", JSON.stringify(storedMoviesWant));
+        if (storedMoviesSeen.includes(movieName)) {
+            for (let i = 0; i < storedMoviesSeen.length; i++) {
+                if (storedMoviesSeen[i] === movieName) {
+                    storedMoviesSeen.splice(i, 1);
+                }
+            }
+        }
+        localStorage.setItem("Movies-Seen", JSON.stringify(storedMoviesSeen));
+    }
+    if (storedMoviesWant !== null && storedMoviesSeen.length > 0) {
+        localStorage.setItem("Movies-Want", JSON.stringify(storedMoviesWant));
+        if (storedMoviesWant.includes(movieName)) {
+            for (let i = 0; i < storedMoviesWant.length; i++) {
+                if (storedMoviesWant[i] === movieName) {
+                    storedMoviesWant.splice(i, 1);
+                }
+            }
+        }
+        localStorage.setItem("Movies-Want", JSON.stringify(storedMoviesWant));
+    }
+
+}
+
+checkInputParameter();
 

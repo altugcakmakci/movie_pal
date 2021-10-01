@@ -186,3 +186,10 @@ nav {
 .close {
     font-size: 2rem;
 }
+
+.radio-seen {
+    padding:10px;
+    margin-left: 20px;
+    color:brown;
+    font-size:150%;
+}
