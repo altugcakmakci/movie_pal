@@ -13,6 +13,7 @@ header {
     font-size: 300%;
    
 }
+
 nav {
     background-image: ;
     background-color: rgb(231, 227, 227, 0.3);
@@ -265,11 +266,30 @@ h3 {
 }
 
 
+.radio-seen {
+    padding:10px;
+    margin-left: 20px;
+    color:rgba(32, 54, 54);
+    font-size:150%;
+}
+
+.pure-g {
+    letter-spacing: normal;
+}
+
+#movies-tosee, #movies-seen{
+    display: block;
+}
+
 .bookCard{
     display:inline-block;
 
     width:250px;
-
+}
+p {
+    font-family: 'Archivo Black', sans-serif;  
+}
+  
 
 img {
     max-width: 20vh;

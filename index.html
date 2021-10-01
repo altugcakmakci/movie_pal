@@ -20,8 +20,9 @@
             <li class="pure-menu-item">
             <a href="./index.html" class="pure-menu-link">Movies</a>
            </li>  
-            <li class="pure-menu-item">
-                <a href="./author.html" class="pure-menu-link">Directors</a>
+            <li class="pure-menu-item"></li>
+                <a href="./author.html" class="pure-menu-link">Actor/Director</a>
+
             </li>
             <li class="pure-menu-item">
                 <a href="./mybooks.html" class="pure-menu-link">My Collection</a>
@@ -34,13 +35,14 @@
     <!-- general container -->
     <div class="pure-g" id="generalContainer"> 
       <!-- side container -->
+
       <div class="pure-u-1 pure-u-md-1-4 pure-u-lg-1-4" >
         <div id="sidebar">
           <!-- search -->
           <div id="formContainer">
             <form class="pure-form pure-form-stacked">
               <fieldset>
-                <input type="text" id="search-movie" placeholder="Type here..." size="5">
+                <input type="text" id="search-movie" placeholder="Title Search" size="5">
                 <button type="button" class="pure-button pure-button-primary" id="movie-button">Search</button>
               </fieldset>
             </form>
@@ -57,10 +59,10 @@
 
       <!-- right container -->
       <div class="pure-u-1 pure-u-md-3-4 pure-u-lg-3-4" id="results">
+        <div id='movie-list'></div>
         <!-- Focused Section -->
-        <div  id="focusedInfo">
-
-        </div>
+        <div  id="focusedInfo"></div>
+        <div  id="castInfo" class="pure-g"></div>
         <hr>
         <!-- Related Media Section -->
         <div id="relatedMedia">
@@ -75,7 +77,7 @@
           <p>Cannot be blank!</p>
         </div>
       </div>
-
+      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./assets/js/script.js"></script>
