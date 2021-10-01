@@ -200,6 +200,7 @@ function fillMovieInfoTab(data) {
     for (let i = 0; i < data.actorList.length; i++) {
         addCastDiv(data.actorList[i]);
     }
+    relatedBooks();
 }
 
 function addCastDiv(dataCast) {
@@ -255,6 +256,8 @@ let jumpToPerson = function (personKey) {
 }
 
 function checkInputParameter() {
+    storedMoviesSeen = JSON.parse(localStorage.getItem("Movies-Seen"));
+    storedMoviesWant = JSON.parse(localStorage.getItem("Movies-Want"));
     console.log(location.search);
     if (location.search.length === 0) {
         console.log("return");
@@ -334,7 +337,7 @@ function removeMovie(movieName) {
         }
         localStorage.setItem("Movies-Seen", JSON.stringify(storedMoviesSeen));
     }
-    if (storedMoviesWant !== null && storedMoviesSeen.length > 0) {
+    if (storedMoviesWant !== null && storedMoviesWant.length > 0) {
         localStorage.setItem("Movies-Want", JSON.stringify(storedMoviesWant));
         if (storedMoviesWant.includes(movieName)) {
             for (let i = 0; i < storedMoviesWant.length; i++) {
@@ -492,7 +495,7 @@ function relatedMediaButtons(){
     relatedMediaDiv.appendChild(buttonDiv);
 }
 
-relatedMediaButtons();
+//relatedMediaButtons();
 
 //relatedBooks();
 //relatedRedditPosts();

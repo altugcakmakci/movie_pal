@@ -15,15 +15,7 @@ let alertModal = $("#alert-modal");
 let modalSpan = $(".close");
 
 
-directorInput.on("click", function (event) {
-  event.preventDefault();
-  console.log(searchInput.val());
-  if (searchInput.val() == "") {
-    alertModal.css("display", "block");
-  } else {
-    alertModal.css("display", "none");
-  }
-})
+
 
 modalSpan.on("click", function (event) {
   event.preventDefault();
@@ -95,6 +87,7 @@ function getPersonList(personName) {
 };
 
 function fillTabwithData(data, dataWorks) {
+  console.log(data);
   personInfoDiv.innerHTML = "";
   let curContainerEl = document.createElement("div");
   curContainerEl.classList = "pure-g";
@@ -268,6 +261,11 @@ let jumpToWorks = function (WorksKey) {
 }
 
 function checkInputParameter() {
+  console.log(location.search);
+    if (location.search.length === 0) {
+        console.log("return");
+        return;
+    }
   console.log(location.search);
   let parameters = location.search.substring(1).split("&");
   if (parameters === null || parameters.length === 0) {

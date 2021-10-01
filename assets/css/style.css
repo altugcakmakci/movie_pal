@@ -71,13 +71,11 @@ nav {
 }
 /* Container styling for focused info section of the results */
 #focusedInfo {
-    height: 49vh;
     background-color: #E9C186;
     margin-bottom: 2vh;    
 }
 /* Container styling for the related media section of the results */
 #relatedMedia {
-    height: 49vh;
     background-color: #E9C186;
 }
 

@@ -13,22 +13,22 @@ let localData = "";
 let movieToAdd = "";
 
 function getSeen() {
-  localData = localStorage.getItem("seen");
+  localData = localStorage.getItem("Movies-Seen");
   seenMovies = JSON.parse(localData);
   $(seenMovies).each(function (i) {
     let currentValue = seenMovies[i];
-    movieSeen.append('<li><a href="#">' + currentValue + '</a></li>');
+    movieSeen.append('<li>' + currentValue + '</li>');
 
   })
 }
 function getToSee() {
 
   localData = "";
-  localData = localStorage.getItem("tosee");
+  localData = localStorage.getItem("Movies-Want");
   toSeeMovies = JSON.parse(localData);
   $(toSeeMovies).each(function (i) {
     let newValue = toSeeMovies[i];
-    movieToSee.append('<li><a href="#">' + newValue + '</a></li>');
+    movieToSee.append('<li>' + newValue + '</li>');
   })
 }
 let getBook = function (bookKey) {
