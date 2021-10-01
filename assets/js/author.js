@@ -1,6 +1,7 @@
 
 //let apiKey = "k_03x8mwjd";
-let apiKey="k_aaaaaaaa";
+//let apiKey="k_aaaaaaaa";
+let apiKey="k_l22edosd";
 let personListDiv = document.getElementById("person-list");
 let personWorksListDiv = document.getElementById("person-works-list");
 let personInfoDiv = document.getElementById("person-info");
@@ -55,8 +56,6 @@ function getPersonList(personName) {
   personInfoDiv.innerHTML = "";
 
   let queryString = personName.trim().replace(" ", "%20");
-
-  console.log();
   fetch("https://imdb-api.com/en/API/SearchName/" + apiKey + "/" + queryString).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
@@ -86,7 +85,7 @@ function getPersonList(personName) {
   });
 };
 
-function fillTabwithData(data, dataWorks) {
+function fillTabwithData(data) {
   console.log(data);
   personInfoDiv.innerHTML = "";
   let curContainerEl = document.createElement("div");
