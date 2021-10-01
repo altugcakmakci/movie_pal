@@ -1,3 +1,8 @@
+html{
+    scrollbar-width:normal;
+    scrollbar-color: black grey;
+
+}
 header {
     background-color: #160F29;
     color: whitesmoke;
@@ -64,7 +69,8 @@ nav {
 }
 /* Container styling for the related media section of the results */
 #relatedMedia {
-    height: 40.5%;
+    /* height: 40.5%; */
+    height:400px;
     background-color: #E9C186;
 }
 /* General container that applies only for page 3 'Your Collection' */
@@ -187,4 +193,9 @@ nav {
 }
 .close {
     font-size: 2rem;
+}
+
+.bookCard{
+    display:inline-block;
+    width:200px;
 }
