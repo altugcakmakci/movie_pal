@@ -1,6 +1,27 @@
 let personListDiv = document.getElementById("person-list");
 let personWorksListDiv = document.getElementById("person-works-list");
 let personInfoDiv = document.getElementById("person-info");
+let directorInput = $('#btnContainer');
+let searchInput = $("#stacked-search")
+let alertModal = $("#alert-modal");
+let modalSpan = $(".close");
+
+
+directorInput.on("click", function (event) {
+  event.preventDefault();
+  console.log(searchInput.val());
+  if (searchInput.val() == "") {
+    alertModal.css("display", "block");
+  } else {
+    alertModal.css("display", "none");
+  }
+})
+
+modalSpan.on("click", function (event) {
+  event.preventDefault();
+  console.log(modalSpan)
+  alertModal.css("display", "none");
+})
 
 function getPersonList(personName) {
   personListDiv.innerHTML = "";
