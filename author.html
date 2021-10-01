@@ -37,6 +37,12 @@
         <div id="formContainer">
           <form class="pure-form pure-form-stacked">
             <fieldset>
+                <label for="stacked-search">Search</label>
+
+                <input type="text" id="stacked-search" placeholder="Director Search" />
+
+                <div id="btnContainer"><button class="pure-button pure-button-primary">Go</button></div>
+
               <input type="text" id="search-people" placeholder="Search...">
               <button type="button" class="pure-button pure-button-primary" id="people-button">Search</button>
               
@@ -53,30 +59,27 @@
 
       <!-- right container -->
       <div class="pure-u-1 pure-u-md-3-4 pure-u-lg-3-4" id="results">
-        <div id="secondContainer">
-          <div id='person-list'></div>
-          <div id='person-info'></div>
-          <div id='person-works-list'></div>     
-        </div>
+           <div id="secondContainer">
+             <div id="author-books"></div>
+             <div id='person-list'></div>
+             <div id='person-info'></div>
+              <div id='person-works-list'></div>     
+           </div>
         
       </div>
-
     </div>
 
-        </div>
+    <div id ="alert-modal" class = "modal">
+      <div class ="alert-text">
+        <span class ="close">&times;</span>
+        <p>Cannot be blank!</p>
       </div>
-
-      <!-- right container -->
-      <div class="pure-u-1 pure-u-md-3-4 pure-u-lg-3-4" id="results">
-        <div id="author-books"></div>        
-      </div>
-
     </div>
-
 
     <div id='person-list'></div>
     <div id='person-info'></div>
     <div id='person-works-list'></div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./assets/js/author.js"></script>

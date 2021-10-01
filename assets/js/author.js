@@ -9,20 +9,38 @@ let searchBtnPeople = document.getElementById('people-button');
 let searchPeople = document.getElementById('search-people');
 
 let bookInput = $('#btnContainer');
+
 let searchInput = $("#stacked-search")
 let alertModal = $("#alert-modal");
 let modalSpan = $(".close");
 
-function searchForPeople() {
-  // checks for valid search parameters
-  if (!searchPeople.value || /^\s*$/.test(searchPeople.value)) {
-    console.log("invalid, search cannot be empty")
-    //display modal
+
+directorInput.on("click", function (event) {
+  event.preventDefault();
+  console.log(searchInput.val());
+  if (searchInput.val() == "") {
     alertModal.css("display", "block");
+  } else {
+    alertModal.css("display", "none");
   }
-  else {
-    console.log("fetch person");
-    getPersonList(searchPeople.value);
+})
+
+modalSpan.on("click", function (event) {
+  event.preventDefault();
+  console.log(modalSpan)
+  alertModal.css("display", "none");
+})
+
+function searchForPeople(){
+    // checks for valid search parameters
+    if (!searchPeople.value || /^\s*$/.test(searchPeople.value)){
+        console.log("invalid, search cannot be empty")
+        //display modal
+        alertModal.css("display", "block");
+    }
+    else{
+        console.log("fetch person");
+        getPersonList(searchPeople.value);
 
   }
 }
@@ -37,6 +55,7 @@ modalSpan.on("click", function (event) {
   console.log(modalSpan)
   alertModal.css("display", "none");
 })
+
 
 function getPersonList(personName) {
   personListDiv.innerHTML = "";
