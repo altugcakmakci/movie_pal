@@ -104,6 +104,7 @@ h3 {
 /* Alignment of Search History label */
 #srchHistory-label {
     align-self: flex-start;
+    display: inline-block !important;
 }
 /* General container for search results */
 #results {
