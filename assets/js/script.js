@@ -157,6 +157,11 @@ function generateRedditPosts(data){
     }
     relatedMediaDiv.setAttribute('style','overflow: scroll')
 }
+
+function relatedMediaButtons(){
+    let buttonDiv= document.createElement('div');
+    let booksButton=document.createElement('button');
+}
 //additionalInfoMovie();
 //relatedBooks();
-relatedRedditPosts();
+//relatedRedditPosts();
