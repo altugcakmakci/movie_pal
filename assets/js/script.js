@@ -157,6 +157,6 @@ function generateRedditPosts(data){
     }
     relatedMediaDiv.setAttribute('style','overflow: scroll')
 }
-//additionalInfoMovie();
+//Uncomment to view content
 //relatedBooks();
-relatedRedditPosts();
+//relatedRedditPosts();
