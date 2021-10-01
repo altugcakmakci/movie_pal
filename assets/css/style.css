@@ -1,52 +1,98 @@
-* {
+*, body {
     box-sizing: border-box;
+    font-family: 'Scheherazade New', serif !important;
   }
 
 header {
-    background-color: #160F29;
+    background-image: linear-gradient(160deg, rgb(1, 42, 74), rgb(1, 42, 74, 0.15));
     color: whitesmoke;
     text-align: center;
-    padding: 3%;
-    font-family: 'Archivo Black', sans-serif;
-    font-size:200%;    
+    padding-top: 2%;
+    
+    height: 15vh; 
+    font-size: 300%;
+   
 }
 
 nav {
-    background-color: #ddbea8;
+    background-image: ;
+    background-color: rgb(231, 227, 227, 0.3);
     color: black;
-    padding: 1%;
-    font-family: 'Archivo Black', sans-serif;
-    font-size:180%;
+    padding: 0.35%;
+    
+    height:fit-content;
+      
+    margin: 0.1vh;
+}
+fieldset {
+    display: flex;
+    flex-flow: column wrap;
+}
+hr {
+    margin: 0 1%;
+}
+h3 {
+    font-weight:lighter;
+    font-style: italic;
+    font-family: 'Scheherazade New', serif;
+    color: rgba(32, 54, 54, 0.705);
+}
+::placeholder {
+    opacity: 0.5;
+    font-size: 80%;
 }
 /* Flex box for nav bar that overrides pure css styling */
 .pure-menu-list {
     display: flex !important;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
+.pure-menu-link {
+    background-color: rgb(231, 227, 227, 0.9);
+    /* flex: auto; */
+    font-size: 120%;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 20vw;
+    height: fit-content;
 }
 /* Sidebar container */
 #sidebar {
-    background-color: #368F8B;
-    height: 100vh;
+    background-color: #A9D6E5;
+    height: 76vh;
     color: whitesmoke;
-    font-family: 'Archivo Black', sans-serif;
+    
     font-size:150%;
+    border-radius: 8px;
+    margin-top: 1vh;
+    box-shadow: inset 0vh 1vh 1vh 0vh rgb(137, 194, 217,0.5);
+    
+    
+        
 }
 /* Container of the search form (input and button) */
 #formContainer {
     margin-left: 3%;
     margin-right: 1%;
 }
-/* Limit width of search input*/
-#stacked-search {
-    max-width: 70%;
+#search-movie, #search-people {
+    max-width: 90%;
+    min-width: 0;
+    flex-shrink: 1;
+        
 }
+
 /* Btn container */
 #btnContainer {
     margin-top: 2%;    
 }
-/* search history flex container */
+.pure-button {
+    padding: 0 5% !important;
+    border-radius: 4px;
+    width: 100px;
+}
+/* search history flex container */ 
 #search-history {
     display: flex;
     flex-flow: column nowrap;
@@ -57,44 +103,50 @@ nav {
 }
 /* Alignment of Search History label */
 #srchHistory-label {
-    margin-left: 2%;
-    margin-right:55%
+    align-self: flex-start;
 }
 /* General container for search results */
 #results {
-    background-color: #f3dfc1;
+    background-color: white;
     color: black;
     font-family: 'Archivo Black', sans-serif;
     font-size:100%;  
-    height: 100vh;
-    overflow: scroll;  
+    height: 77vh;
+    overflow: auto;
+            
 }
 /* Container styling for focused info section of the results */
 #focusedInfo {
-    background-color: #E9C186;
-    margin-bottom: 2vh;    
+    height: 45vh;    
+    margin: 1vh;    
+    border-radius: 8px;         
 }
 /* Container styling for the related media section of the results */
 #relatedMedia {
-    background-color: #E9C186;
+    padding: 0 2vh 0 2vh;
+    height: 30vh;    
+    border-radius: 8px;  
+    margin: 0vh 1vh 0vh 1vh;
 }
 
 /* General container that applies only for page 3 'Your Collection' */
 #generalContainer3 {
-    background-color: #f3dfc1;
-    height: 74vh;
+    
+    height: 78vh;
+    display: flex;
+    flex-flow: column nowrap; 
 }
 /* My Collection section applies only for page 3 'Your Collection' */
 #myCollection {
     display: flex;
     height: 40vh;
-    background-color: #FCF6EE;
-    margin-bottom: 1%;
-    margin-left: 1%;
+    background-color: rgb(169, 214, 229,0.5);
+    
+    border-radius: 8px;
     color: black;
-    font-family: 'Archivo Black', sans-serif;
+    margin: 0 0.3% 1% 0.3%;
     font-size:100%;
-    overflow: scroll;
+    overflow: auto;
 }
 /* My Wishlist section applies only for page 3 'Your Collection' */
 #myWishlist {
@@ -102,13 +154,14 @@ nav {
     height: 33vh;
     background-color: #FCF6EE;
     color: black;
-    font-family: 'Archivo Black', sans-serif;
+    border-radius: 8px;
     font-size:100%;
-    margin-left: 1%;
-    overflow: scroll;
+    background-color: rgb(169, 214, 229,0.5);
+    overflow: auto;
+    margin: 0 0.3% 0 0.3%;
 }
 .person-list {
-    background-color: orange;
+    
     border: 2px solid black;
     margin: 10px;
     padding: 5px;
@@ -116,9 +169,9 @@ nav {
 }
 .person_list-item {
     list-style-type: none;
-    background-color: #ddbea8;
+    
     color:black;
-    border-left: 4px solid #e2a579;
+    border-left: 4px solid rgb(169, 214, 229,0.5);
     border-left-style: double;
     margin-bottom: 3px;
     padding: 2px;
@@ -133,28 +186,28 @@ nav {
 }
 
 .person-header {
-    color:brown;
+    color: rgba(32, 54, 54);
     padding: 10px;
     font-size:150%;
 }
 
 .person-text {
-    color:brown;
+    color:rgba(32, 54, 54);
     padding: 10px;
     font-size:150%;
 }
 
 .movie-text {
-    color:brown;
+    color:rgba(32, 54, 54);
     font-size:100%;
     text-align: center;
 }
 
 .movie-list {
     list-style-type: none;
-    background-color: #ddbea8;
+    background-color: rgb(169, 214, 229,0.5);
     color:black;
-    border-left: 4px solid #e2a579;
+    border-left: 4px solid rgb(169, 214, 229,0.5);
     border-left-style: double;
     margin-bottom: 3px;
     padding: 2px;
@@ -168,9 +221,9 @@ nav {
 
 .movie-list-header {
     list-style-type: none;
-    background-color: brown;
-    color:#ddbea8;
-    border-left: 4px solid #e2a579;
+    background-color: rgb(169, 214, 229,0.5);
+    color:rgba(32, 54, 54);
+    border-left: 4px solid rgb(169, 214, 229,0.5);
     border-left-style: double;
     margin-bottom: 3px;
     padding: 2px;
@@ -190,14 +243,21 @@ nav {
 #alert-modal {
     z-index: 1;
     display:none;
-    height: 5rem;
-    width: 10rem;
+    height: 15vh;
+    width: 10vw;
     position: fixed;
-    margin: auto, 0;
+    /* margin: auto, 0; */
     padding:2rem;
     top: 40%;
     left: 50%;
-    background-color:  #368F8B;
+    background-color:  rgb(70, 143, 175);
+    color: white;
+    font-family: 'Scheherazade New', serif !important;
+    font-size: 120%;
+    text-align: center;
+    align-content: center;
+    border: double black 1px;
+    box-shadow: 5px 5px 5px grey;
 
 
 }
@@ -209,7 +269,7 @@ nav {
 .radio-seen {
     padding:10px;
     margin-left: 20px;
-    color:brown;
+    color:rgba(32, 54, 54);
     font-size:150%;
 }
 
@@ -225,13 +285,13 @@ nav {
     display:inline-block;
 
     width:250px;
-
+}
 p {
     font-family: 'Archivo Black', sans-serif;  
 }
   
+
 img {
     max-width: 20vh;
-    height:auto;
-
+    height: auto;
 }
