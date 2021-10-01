@@ -162,6 +162,7 @@ function generateRedditPosts(data){
     relatedMediaDiv.setAttribute('style','overflow: scroll')
 }
 
+
 function relatedMediaButtons(){
     relatedMediaDiv.innerHTML="";
     let buttonDiv= document.createElement('div');
@@ -182,6 +183,6 @@ function relatedMediaButtons(){
 }
 
 relatedMediaButtons();
-//additionalInfoMovie();
+
 //relatedBooks();
 //relatedRedditPosts();
