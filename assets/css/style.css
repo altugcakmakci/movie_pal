@@ -1,51 +1,90 @@
-* {
+*, body {
     box-sizing: border-box;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Scheherazade New', serif !important;
   }
 header {
-    background-color: #160F29;
+    background-image: linear-gradient(160deg, rgb(1, 42, 74), rgb(1, 42, 74, 0.15));
     color: whitesmoke;
     text-align: center;
-    padding: 3%;
-    font-family: 'Archivo Black', sans-serif;
-    font-size:200%;    
+    padding-top: 2%;
+    
+    height: 15vh; 
+    font-size: 300%;
+   
 }
 nav {
-    background-color: #ddbea8;
+    background-image: ;
+    background-color: rgb(231, 227, 227, 0.3);
     color: black;
-    padding: 1%;
-    font-family: 'Archivo Black', sans-serif;
-    font-size:180%;
+    padding: 0.35%;
+    
+    height: 7vh;
+      
+    margin: 0.1vh;
+}
+input {
+  
+}
+hr {
+    margin: 0 1%;
+}
+h3 {
+    font-weight:lighter;
+    font-style: italic;
+    font-family: 'Scheherazade New', serif;
+    color: rgba(32, 54, 54, 0.705);
 }
 /* Flex box for nav bar that overrides pure css styling */
 .pure-menu-list {
     display: flex !important;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
+.pure-menu-link {
+    background-color: rgb(231, 227, 227, 0.9);
+    /* flex: auto; */
+    font-size: 120%;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 20vw;
+    height: fit-content;
 }
 /* Sidebar container */
 #sidebar {
-    background-color: #368F8B;
-    height: 78vh;
+    background-color: #A9D6E5;
+    height: 76vh;
     color: whitesmoke;
-    font-family: 'Archivo Black', sans-serif;
+    
     font-size:150%;
+    border-radius: 8px;
+    margin-top: 1vh;
+    box-shadow: inset 0vh 1vh 1vh 0vh rgb(137, 194, 217,0.5);
+    
+    
+        
 }
 /* Container of the search form (input and button) */
 #formContainer {
     margin-left: 3%;
     margin-right: 1%;
 }
-/* Limit width of search input*/
-#stacked-search {
-    max-width: 70%;
+#search-movie {
+    max-width: 90%;
+    /* font-weight: 100; */
+    color: rgba(248, 241, 241, 0.027) !important;
+    font-size: 80%;
 }
+
 /* Btn container */
 #btnContainer {
     margin-top: 2%;    
 }
-/* search history flex container */
+.pure-button {
+    padding: 0 5% !important;
+    border-radius: 4px;
+}
+/* search history flex container */ 
 #search-history {
     display: flex;
     flex-flow: column nowrap;
@@ -61,25 +100,32 @@ nav {
 }
 /* General container for search results */
 #results {
-    background-color: #f3dfc1;
+    background-color: white;
     color: black;
     font-family: 'Archivo Black', sans-serif;
     font-size:100%;  
-    height: 78vh;
-    overflow: scroll;  
+    height: 77vh;
+    overflow: auto;
+            
 }
 /* Container styling for focused info section of the results */
 #focusedInfo {
-    height: 40vh;
-    background-color: #E9C186;
-    margin-bottom: 2vh;    
+    height: 45vh;
+    
+    margin: 1vh;
+    
+    
+    border-radius: 8px;  
+    
+        
 }
 /* Container styling for the related media section of the results */
 #relatedMedia {
-    padding: 0.5vh;
-    height: 32vh;
-    background-color: #E9C186;
+    padding: 0 2vh 0 2vh;
+    height: 30vh;
     
+    border-radius: 8px;  
+    margin: 0vh 1vh 0vh 1vh;
 }
 
 /* General container that applies only for page 3 'Your Collection' */
@@ -95,11 +141,11 @@ nav {
     height: 40vh;
     background-color: #FCF6EE;
     margin-bottom: 1%;
-    margin-left: 1%;
+    
     color: black;
-    font-family: 'Archivo Black', sans-serif;
+    
     font-size:100%;
-    overflow: scroll;
+    overflow: auto;
 }
 /* My Wishlist section applies only for page 3 'Your Collection' */
 #myWishlist {
@@ -107,10 +153,10 @@ nav {
     height: 33vh;
     background-color: #FCF6EE;
     color: black;
-    font-family: 'Archivo Black', sans-serif;
+    
     font-size:100%;
-    margin-left: 1%;
-    overflow: scroll;
+    
+    overflow: auto;
 }
 .person-list {
     background-color: orange;
