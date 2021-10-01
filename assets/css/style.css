@@ -10,6 +10,7 @@ header {
     font-family: 'Archivo Black', sans-serif;
     font-size:200%;    
 }
+
 nav {
     background-color: #ddbea8;
     color: black;
@@ -209,6 +210,12 @@ nav {
 }
 
 
+.pure-g {
+    letter-spacing: normal;
+}
+#movies-tosee, #movies-seen{
+    display: block;
+
 .bookCard{
     display:inline-block;
 
@@ -220,5 +227,6 @@ p {
 img {
     max-width: 20vh;
     height:auto;
+
 
 }

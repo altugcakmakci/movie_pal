@@ -33,13 +33,22 @@ searchBtnMovie.addEventListener('click',function(){
 });
 
 
+bookInput.on("click", function (event) {
+    event.preventDefault();
+    console.log(searchInput.val());
+    if (searchInput.val() == "") {
+        alertModal.css("display", "block");
+    } else {
+        alertModal.css("display", "none");
+    }
+})
 
-modalSpan.on("click", function(event) {
+modalSpan.on("click", function (event) {
     event.preventDefault();
     console.log(modalSpan)
     alertModal.css("display", "none");
- })
 
+})
 
 function additionalInfoMovie(){
     //relatedMediaDiv="";
