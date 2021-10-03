@@ -16,9 +16,6 @@ let castInfoDiv = document.getElementById("castInfo");
 let relatedMediaDiv= document.getElementById('relatedMedia');
 
 
-let testStr="https://en.wikipedia.org/w/api.php?action=query&origin=*&format=json&generator=search&gsrnamespace=0&gsrlimit=5&gsrsearch=shrek_2001"
-
-
 function searchForMovie(){
     // checks for valid search parameters
     if (!searchMovie.value || /^\s*$/.test(searchMovie.value)) {
@@ -62,6 +59,7 @@ function getMoviesList(searchTitle) {
     focusedInfoDiv.innerHTML = "";
 
     let queryString = searchTitle.trim().replace(" ", "%20");
+    
 
     console.log();
     fetch("https://imdb-api.com/en/API/SearchTitle/" + apiKey + "/" + queryString).then(function (response) {
@@ -88,12 +86,13 @@ function getMoviesList(searchTitle) {
 
             });
         } else {
-            //document.getElementById("cityName").value="";
+           
         }
     });
 }
 
 function fillMovieInfoTab(data) {
+    relatedMediaButtons(data);
     movieListDiv.innerHTML = "";
     focusedInfoDiv.innerHTML = "";
     let curContainerEl = document.createElement("div");
@@ -354,19 +353,9 @@ function removeMovie(movieName) {
 
 checkInputParameter();
 
-
-function additionalInfoMovie(){
-    //relatedMediaDiv="";
-    //related books
-    //trimspaces
-    //let queryStringBook= movieTitle.trim().replace(" ","%20");
- 
-}
-function relatedWiki(){
-
-}
-function relatedBooks(){
-        let queryStringBook="harry potter and the philosohper's stone";
+function relatedBooks(movieTitle){
+        let query=movieTitle;
+        let queryStringBook=query.replace(/ *\([^)]*\) */g, "");
         fetch("https://www.googleapis.com/books/v1/volumes?q="+queryStringBook)
        .then(function (response){ 
             if (response.ok){
@@ -381,8 +370,8 @@ function relatedBooks(){
     });
 }
 function generateRelatedBooks(data){
-    relatedMediaDiv.innerHTML=""
-    relatedMediaButtons();
+    //relatedMediaDiv.innerHTML=""
+    
     let bookDiv=document.createElement('div');
     for (i=0; i<4; i++){
         console.log(data.items[i].volumeInfo.title);
@@ -427,8 +416,8 @@ function generateRelatedBooks(data){
 function relatedRedditPosts(){
     //top reddit posts
     //trimspaces
-    //let queryStringReddit= movieTitle.trim().replace(" ","_");
-    let queryStringReddit='harrypotter'
+    let query= searchMovie.value.trim().replace(" ", "");
+    let queryStringReddit=query;
     fetch("https://www.reddit.com/r/" +queryStringReddit+"/top.json?count=20")
     .then(function (response){
         if (response.ok){
@@ -444,8 +433,7 @@ function relatedRedditPosts(){
 }
 
 function generateRedditPosts(data){
-    relatedMediaDiv.innerHTML=""
-    relatedMediaButtons();
+ 
     //only display text post discussions
     for (i=0; i<data.data.children.length;i++){
         if (data.data.children[i].data.selftext==""){
@@ -476,27 +464,37 @@ function generateRedditPosts(data){
     relatedMediaDiv.setAttribute('style','overflow: scroll')
 }
 
+function checkForExisting(movieTitle,reddit){
+    let title=movieTitle;
+    if (reddit==true){
+        return title;
+    }
+    else{
+        title="Movies";
+        return title;
+    }
+}
 
-function relatedMediaButtons(){
+function relatedMediaButtons(data){
     relatedMediaDiv.innerHTML="";
+    let movieTitle=data.fullTitle;
     let buttonDiv= document.createElement('div');
     let booksButton=document.createElement('button');
     booksButton.textContent="Related Books";
     booksButton.addEventListener('click',function(){
-        relatedBooks();
+        relatedMediaButtons(data);
+        relatedBooks(movieTitle);
     });
     buttonDiv.appendChild(booksButton);
     let redditButton = document.createElement('button');
     redditButton.textContent="Reddit Discussion";
     redditButton.addEventListener('click', function(){
-        relatedRedditPosts();
+        relatedMediaButtons(data);
+        relatedRedditPosts(movieTitle);
     });
     buttonDiv.appendChild(redditButton);
 
     relatedMediaDiv.appendChild(buttonDiv);
 }
 
-//relatedMediaButtons();
 
-//relatedBooks();
-//relatedRedditPosts();
